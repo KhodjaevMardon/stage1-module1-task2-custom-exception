@@ -1,6 +1,8 @@
 package com.epam.mjc;
 
 
+import com.epam.mjc.exception.StudentNotFoundException;
+
 import java.util.Arrays;
 
 public enum Student {
@@ -30,7 +32,7 @@ public enum Student {
     return Arrays.stream(Student.values())
         .filter(student -> id == student.getId())
         .findFirst()
-        .orElse(null);
+        .orElseThrow(() -> new StudentNotFoundException(id));
   }
 
   public long getId() {
